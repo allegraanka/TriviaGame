@@ -2,10 +2,17 @@
 var timer;
 var intervalId;
 var clockRunning = false;
-var randomQuestion = questions[Math.floor(Math.random() * questions.length)];
+var correct = 0;
+var wrong = 0;
+var randomQuestion;
+$("#correctScore").hide();
+$("#wrongScore").hide();
+
 $("#startButton").on("click", getQuestion);
+$("#startButton").on("click", showScores);
 
 function getQuestion() {
+    randomQuestion = questions[Math.floor(Math.random() * questions.length)];
     if (!clockRunning) {
         countdown = 30;
         $("#clock").text(countdown);
@@ -23,6 +30,7 @@ function getQuestion() {
             }
         }, 1000);
     }
+    $("#startButton").hide();
 }
 
 function renderAnswers() {
@@ -39,14 +47,18 @@ $(document).on("click", ".ans-item", function() {
     var currentChoice = $(this).text();
     if (randomQuestion.answer === currentChoice) {
         clockRunning = false;
+        correct++;
+        $("#correctScore").text(correct);
         clearTimeout(timer);
         clearInterval(intervalId);
         $("#clock").empty();
         $("#answers-container").empty();
-        $("#question-container").text("Correct! You chose " + currentChoice + ".");
+        $("#question-container").text(currentChoice + " is correct!");
         setTimeout(getQuestion, 3500);
     } else if (randomQuestion !== currentChoice) {
         clockRunning = false;
+        wrong++;
+        $("#wrongScore").text(wrong);
         clearTimeout(timer);
         clearInterval(intervalId);
         $("#clock").empty();
@@ -62,4 +74,18 @@ function timeUp() {
     $("#question-container").empty();
     $("#answers-container").empty();
     setTimeout(getQuestion, 3500);
+}
+
+function resetGame() {
+    clockRunning = false;
+    correct = 0;
+    wrong = 0;
+    $("#question-container").empty();
+    $("#answers-container").empty();
+    $("#startButton").show().text("Play again.");
+}
+
+function showScores() {
+    $("#correctScore").text("0").show();
+    $("#wrongScore").text("0").show();
 }
