@@ -11,11 +11,12 @@ $("#wrongScore").hide();
 $("#startButton").on("click", getQuestion);
 $("#startButton").on("click", showScores);
 
-if (correct === 8 || wrong === 8) {
+if (correct === 8 || wrong === 3) {
     resetGame();
 }
 
 function getQuestion() {
+    $("#directions").hide();
     randomQuestion = questions[Math.floor(Math.random() * questions.length)];
     if (!clockRunning && correct !== 8 || wrong !== 8) {
         countdown = 30;

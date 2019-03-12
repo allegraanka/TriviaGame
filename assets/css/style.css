@@ -26,6 +26,12 @@ h1 {
     color: lightsalmon;
 }
 
+#directions {
+    margin: 50px;
+    padding: 5px;
+    text-align: center;
+}
+
 ul {
     list-style-type: none;
     margin-left: 0;
