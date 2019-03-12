@@ -8,7 +8,7 @@ var questions = [
     {
         question: "What is the driest place on earth?",
         answer: "McMurdo, Antarctica",
-        ansOptions: ["McMurdo, Antartica", "Sahara Desert", "Kufra, Libya", "Atacama Desert"],
+        ansOptions: ["McMurdo, Antarctica", "Sahara Desert", "Kufra, Libya", "Atacama Desert"],
         points: 4
     },
     {

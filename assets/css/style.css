@@ -1,8 +1,45 @@
 body {
     width: 50%;
     margin: auto;
+    font-family: 'Cutive Mono', monospace;
+}
+
+h1 {
+    font-family: 'Rock Salt', cursive;
+    font-size: 4rem;
+    color: lightsalmon;
+    padding: 5px;
+    margin: 50px;
+    text-align: center;
+}
+
+#startButton {
+    margin-left: 45%;
+    padding: 10px;
+    background-color: lightsalmon;
+    color: white;
+}
+
+#question-container {
+    margin: 35px 10px 10px 10px;
+    padding: 5px;
+    color: lightsalmon;
 }
 
 ul {
     list-style-type: none;
+    margin-left: 0;
+}
+
+ul li {
+    padding: 20px;
+    margin: 10px;
+    border: 1px solid coral;
+    box-shadow: 5px 5px 5px lightsalmon;
+    text-align: center;
+}
+
+ul li:hover {
+    background-color: lightsalmon;
+    color: white;
 }

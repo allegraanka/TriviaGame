@@ -11,17 +11,21 @@ $("#wrongScore").hide();
 $("#startButton").on("click", getQuestion);
 $("#startButton").on("click", showScores);
 
+if (correct === 8 || wrong === 8) {
+    resetGame();
+}
+
 function getQuestion() {
     randomQuestion = questions[Math.floor(Math.random() * questions.length)];
-    if (!clockRunning) {
+    if (!clockRunning && correct !== 8 || wrong !== 8) {
         countdown = 30;
-        $("#clock").text(countdown);
+        $("#clock").text("Time left: " + countdown + " seconds!");
         $("#question-container").text(randomQuestion.question);
         renderAnswers();
         timer = setTimeout(timeUp, 1000 * 30);
         clockRunning = true;
         intervalId = setInterval(function () {
-            $("#clock").text(countdown);
+            $("#clock").text("Time left: " + countdown + " seconds!");
             countdown--;
             if (countdown === 0) {
                 clockRunning = false;
@@ -48,7 +52,7 @@ $(document).on("click", ".ans-item", function() {
     if (randomQuestion.answer === currentChoice) {
         clockRunning = false;
         correct++;
-        $("#correctScore").text(correct);
+        $("#correctScore").text("Correct: " + correct);
         clearTimeout(timer);
         clearInterval(intervalId);
         $("#clock").empty();
@@ -58,7 +62,7 @@ $(document).on("click", ".ans-item", function() {
     } else if (randomQuestion !== currentChoice) {
         clockRunning = false;
         wrong++;
-        $("#wrongScore").text(wrong);
+        $("#wrongScore").text("Wrong: " + wrong);
         clearTimeout(timer);
         clearInterval(intervalId);
         $("#clock").empty();
@@ -80,12 +84,12 @@ function resetGame() {
     clockRunning = false;
     correct = 0;
     wrong = 0;
-    $("#question-container").empty();
+    $("#question-container").text("Good game. But it's over now.");
     $("#answers-container").empty();
     $("#startButton").show().text("Play again.");
 }
 
 function showScores() {
-    $("#correctScore").text("0").show();
-    $("#wrongScore").text("0").show();
+    $("#correctScore").text("Correct: 0").show();
+    $("#wrongScore").text("Wrong: 0").show();
 }
