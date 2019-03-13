@@ -11,6 +11,8 @@ $("#wrongScore").hide();
 $("#startButton").on("click", getQuestion);
 $("#startButton").on("click", showScores);
 
+// i wanted to create a conditional that would end/restart the game at 8 correct answers or 3 incorrect ones
+// this is where it would have gone to the last screen and presented the button to play again
 if (correct === 8 || wrong === 3) {
     resetGame();
 }
